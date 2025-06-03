@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<ProjectWorkspace xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="project_mpw.xsd">
+
+  <SchemaVersion>1.0</SchemaVersion>
+
+  <Header>### uVision Project, (C) Keil Software</Header>
+
+  <WorkspaceName>C:\Users\Karudo\Desktop\on hand\样板测试程序\样板测试程序\SDK_2_13_1_MIMXRT1170-EVKB\boards\evkbmimxrt1170\driver_examples\can\can1_interrupt_transfer\cm7\mdk\canfd_interrupt_transfer_cm7.uvmpw</WorkspaceName>
+
+  <project>
+    <PathAndName>.\canfd_interrupt_transfer_cm7.uvprojx</PathAndName>
+    <NodeIsActive>1</NodeIsActive>
+    <NodeIsExpanded>1</NodeIsExpanded>
+  </project>
+
+</ProjectWorkspace>
