@@ -125,7 +125,15 @@ unsigned char canSend(CAN_PORT port, Message *message)
 		txFrame.type  	= (message->rtr) ? kFLEXCAN_FrameTypeRemote : kFLEXCAN_FrameTypeData;
 		txFrame.id 			= (txFrame.format == kFLEXCAN_FrameFormatStandard) ? FLEXCAN_ID_STD(message->cob_id) : FLEXCAN_ID_EXT(message->cob_id);
 		txFrame.length = message->len;
-		memcpy(&txFrame.dataByte0, message->data, txFrame.length);
+	
+		txFrame.dataByte0 = message->data[0];
+		txFrame.dataByte1 = message->data[1];
+		txFrame.dataByte2 = message->data[2];
+		txFrame.dataByte3 = message->data[3];
+		txFrame.dataByte4 = message->data[4];
+		txFrame.dataByte5 = message->data[5];
+		txFrame.dataByte6 = message->data[6];
+		txFrame.dataByte7 = message->data[7];
 	
     txXfer.frame = &txFrame;
     status = FLEXCAN_TransferSendNonBlocking(EXAMPLE_CAN, &flexcanHandle, &txXfer);
@@ -308,19 +316,19 @@ static void CANopenRx_Task(void* parameter)
         (void)FLEXCAN_TransferReceiveNonBlocking(EXAMPLE_CAN, &flexcanHandle, &rxXfer);
 
 				LOG_INFO("Node 2\r\n");
-				rxMessage.cob_id = rxXfer.frame->id;
+				rxMessage.cob_id = (rxXfer.frame->id >> CAN_ID_STD_SHIFT);
 				rxMessage.len = rxXfer.frame->length;
 				for (int i = 0; i < rxMessage.len; i++) 
 				{
 					switch (i) {
-						case 0: rxMessage.data[i] = rxXfer.frame->dataByte3; break;
-						case 1: rxMessage.data[i] = rxXfer.frame->dataByte2; break;
-						case 2: rxMessage.data[i] = rxXfer.frame->dataByte1; break;
-						case 3: rxMessage.data[i] = rxXfer.frame->dataByte0; break;
-						case 4: rxMessage.data[i] = rxXfer.frame->dataByte7; break;
-						case 5: rxMessage.data[i] = rxXfer.frame->dataByte6; break;
-						case 6: rxMessage.data[i] = rxXfer.frame->dataByte5; break;
-						case 7: rxMessage.data[i] = rxXfer.frame->dataByte4; break;
+						case 3: rxMessage.data[i] = rxXfer.frame->dataByte3; break;
+						case 2: rxMessage.data[i] = rxXfer.frame->dataByte2; break;
+						case 1: rxMessage.data[i] = rxXfer.frame->dataByte1; break;
+						case 0: rxMessage.data[i] = rxXfer.frame->dataByte0; break;
+						case 7: rxMessage.data[i] = rxXfer.frame->dataByte7; break;
+						case 6: rxMessage.data[i] = rxXfer.frame->dataByte6; break;
+						case 5: rxMessage.data[i] = rxXfer.frame->dataByte5; break;
+						case 4: rxMessage.data[i] = rxXfer.frame->dataByte4; break;
 						default: break;
 						}
 				}
