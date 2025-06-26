@@ -1,0 +1,28 @@
+--cpu Cortex-M7.fp.dp
+"release\gpio_led_output.o"
+"release\pin_mux.o"
+"release\board.o"
+"release\clock_config.o"
+"release\dcd.o"
+"release\fsl_str.o"
+"release\fsl_debug_console.o"
+"release\fsl_assert.o"
+"release\fsl_gpio.o"
+"release\fsl_clock.o"
+"release\fsl_common.o"
+"release\fsl_common_arm.o"
+"release\fsl_lpuart.o"
+"release\fsl_pmu.o"
+"release\fsl_dcdc.o"
+"release\fsl_cache.o"
+"release\fsl_anatop_ai.o"
+"release\system_mimxrt1176_cm7.o"
+"release\fsl_adapter_lpuart.o"
+"release\fsl_component_generic_list.o"
+"release\startup_mimxrt1176_cm7.o"
+"release\fsl_flexspi_nor_boot.o"
+"release\evkmimxrt1170_flexspi_nor_config.o"
+--library_type=microlib --nodebug --diag_suppress 6314 --strict --scatter "MIMXRT1176xxxxx_cm7_ram.scf"
+--remove --entry=Reset_Handler --diag_suppress 6314 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\output\igpio_led_output_cm7.map" -o release\igpio_led_output_cm7.out
